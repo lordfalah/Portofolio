@@ -4,9 +4,14 @@ const Blob = () => {
   return (
     <div className="relative -z-10 mx-auto size-80 md:size-96">
       <Image
-        src={"/default/peep.svg"}
+        className="size-96"
+        src={"/image/me/iam.jpg"}
         alt="avatar"
-        style={{ clipPath: "url(#shape)" }}
+        style={{
+          clipPath: "url(#shape)",
+          objectFit: "cover",
+          objectPosition: "50% 20%",
+        }}
         width={500}
         height={500}
       />

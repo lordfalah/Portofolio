@@ -1,21 +1,13 @@
 import { Doodle1, Doodle2 } from "@/components/doodles";
-import Image from "next/image";
 import Link from "next/link";
+import CharacterPeep from "./(home)/character";
 
 export default function Home() {
   return (
     <section className="cursor-pencil dark:cursor-pencil-dark relative flex h-full items-center justify-center pb-6 md:w-screen md:pb-0 md:pr-2.5">
       <div className="flex flex-col items-center justify-center md:flex-row md:justify-between">
-        <div className="relative grid w-[350px] place-items-center dark:hidden md:w-[400px]">
-          <Image
-            alt="doodle"
-            width={500}
-            height={500}
-            src={"/default/peep.svg"}
-            priority
-          />
-          <Doodle1 className="absolute bottom-0 stroke-[#a3a3a3]/70" />
-        </div>
+        <CharacterPeep />
+
         <div className="flex flex-col items-center justify-center space-y-4 md:ml-4 md:items-start">
           <h1 className="font-doodle mt-1 text-3xl md:text-4xl">
             It&apos;s me,

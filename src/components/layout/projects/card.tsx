@@ -22,7 +22,7 @@ const Card = ({
   sourceCode,
 }: TCard) => {
   return (
-    <div className="w-full overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-[#F9F9F9]">
+    <div className="w-full overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-[#F9F9F9] dark:bg-[#0F0F0F]/50">
       <div className="flex flex-col lg:flex-row">
         <div className="group relative h-[200px] w-full overflow-hidden p-2 shadow-md contain-size sm:h-[254px] lg:h-auto lg:basis-1/2">
           <Image
@@ -30,22 +30,22 @@ const Card = ({
             className="w-full rounded-xl p-2 transition-transform duration-150 ease-in-out group-hover:scale-125"
             sizes="500px"
             src={imageSrc}
-            style={{ objectFit: "fill" }}
-            objectPosition="center"
+            style={{ objectFit: "fill", objectPosition: "center" }}
+            priority
             fill
           />
         </div>
 
         <div className="flex flex-col justify-center space-y-3 p-4 md:p-6 lg:basis-1/2">
           <div>
-            <h4>{title}</h4>
+            <h2 className="">{title}</h2>
             <p className="text-xs text-[#58524D] md:text-sm">
               {createdAt.toString()}
             </p>
           </div>
           <p className="text-sm md:text-base">{deskription}</p>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Badge>NextJS</Badge>
             <Badge>NextJS</Badge>
             <Badge>NextJS</Badge>
@@ -53,7 +53,7 @@ const Card = ({
             <Badge>NextJS</Badge>
           </div>
 
-          <div className="flex gap-4 pt-2 font-medium md:text-lg">
+          <div className="flex flex-wrap gap-4 pt-2 font-medium md:text-lg">
             <div className="flex items-center gap-2.5">
               <ArrowRight />
               <Link href={visitProject} className="hover:underline">

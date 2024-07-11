@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -36,7 +42,7 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: #1d1d1d;
     --foreground: 0 0% 90%;
 
     --card: 0 0% 3.9%;
@@ -67,9 +73,11 @@
 }
 
 @layer base {
-  /* * {
+  * {
     @apply border-dashed;
-  } */
+    @apply transition-colors;
+    @apply duration-1000;
+  }
 
   *::-webkit-scrollbar {
     @apply h-0 w-1.5;
@@ -82,11 +90,14 @@
   html {
     /* scrollbar-gutter: stable both-edges; */
     scroll-behavior: smooth;
-    overflow: scroll;
+    /* overflow-y: scroll; */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply flex min-h-dvh flex-col justify-between;
+    @apply flex min-h-dvh flex-col justify-between bg-[var(--background)];
   }
 
   .content {

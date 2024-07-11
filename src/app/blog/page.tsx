@@ -10,10 +10,8 @@ const Blog = () => {
   return (
     <section className="flex items-center justify-center">
       <div>
-        <h1 className="mb-8 animate-pulse text-5xl font-bold text-black">
-          Coming Soon
-        </h1>
-        <p className="mb-8 text-lg text-black">
+        <h1 className="mb-8 animate-pulse text-5xl font-bold">Coming Soon</h1>
+        <p className="mb-8 text-lg">
           We`re working hard to bring you something amazing. Stay tuned!
         </p>
       </div>
