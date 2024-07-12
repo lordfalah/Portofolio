@@ -11,10 +11,7 @@ const CharacterPeep = () => {
     <div className="relative grid w-[350px] place-items-center md:w-[400px]">
       <Image
         style={{
-          filter:
-            theme === "dark"
-              ? "drop-shadow(10px 4px 5px rgb(255 255 255 / 0.4))"
-              : "drop-shadow(10px 4px 5px rgb(0 0 0 / 0.4))",
+          filter: `${theme === "dark" ? "drop-shadow(10px 4px 5px rgb(255 255 255 / 0.4))" : "drop-shadow(10px 4px 5px rgb(0 0 0 / 0.4))"} `,
         }}
         alt="doodle"
         width={500}

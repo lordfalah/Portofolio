@@ -14,6 +14,7 @@ const Blob = () => {
         }}
         width={500}
         height={500}
+        priority
       />
       <svg width="0" height="0" viewBox="0 0 500 500">
         <clipPath id="shape" clipPathUnits="objectBoundingBox">

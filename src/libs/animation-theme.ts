@@ -2,7 +2,7 @@ import { flushSync } from "react-dom";
 
 declare global {
   interface Document {
-    startViewTransition: any;
+    startViewTransition: (callback: () => void) => any;
   }
 }
 
@@ -24,7 +24,7 @@ export const handleAnimationThemeToggle = async ({
     !document.startViewTransition ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   ) {
-    setTheme("light");
+    setTheme(theme === "light" ? "dark" : "light");
     return;
   }
 

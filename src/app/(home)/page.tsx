@@ -1,6 +1,9 @@
 import { Doodle1, Doodle2 } from "@/components/doodles";
 import Link from "next/link";
-import CharacterPeep from "./(home)/character";
+import dynamic from "next/dynamic";
+const CharacterPeep = dynamic(() => import("@/app/(home)/character"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
