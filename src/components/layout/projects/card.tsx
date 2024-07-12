@@ -6,20 +6,22 @@ import React from "react";
 
 export type TCard = {
   title: string;
-  deskription: string;
+  description: string;
   imageSrc: string;
   createdAt: Date | string;
   visitProject: string;
-  sourceCode: string;
+  sourceCode: string | null;
+  techs: { name: string; color: string }[];
 };
 
 const Card = ({
   title,
-  deskription,
+  description,
   imageSrc,
   createdAt,
   visitProject,
   sourceCode,
+  techs,
 }: TCard) => {
   return (
     <div className="w-full overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-[#F9F9F9] dark:bg-[#0F0F0F]/50">
@@ -34,18 +36,6 @@ const Card = ({
           priority
         />
 
-        {/* <div className="group relative h-[225px] overflow-hidden p-2 shadow-md sm:h-[254px] lg:h-[256px] lg:basis-[489px]">
-          <Image
-            alt="project"
-            className="w-full rounded-xl object-contain p-2 transition-transform duration-150 ease-in-out group-hover:scale-125 sm:object-fill"
-            sizes="500px"
-            src={imageSrc}
-            style={{ objectPosition: "center" }}
-            priority
-            fill
-          />
-        </div> */}
-
         <div className="mx-auto flex flex-col justify-center space-y-3 p-4 md:p-2 lg:basis-1/2">
           <div>
             <h2 className="">{title}</h2>
@@ -53,30 +43,40 @@ const Card = ({
               {createdAt.toString()}
             </p>
           </div>
-          <p className="text-sm md:text-base">{deskription}</p>
+          <p className="text-sm md:text-base">{description}</p>
 
           <div className="flex flex-wrap gap-2">
-            <Badge>NextJS</Badge>
-            <Badge>NextJS</Badge>
-            <Badge>NextJS</Badge>
-            <Badge>NextJS</Badge>
-            <Badge>NextJS</Badge>
+            {techs.map(({ color, name }, idx) => (
+              <Badge style={{ backgroundColor: color }} key={idx}>
+                {name}
+              </Badge>
+            ))}
           </div>
 
           <div className="flex flex-wrap gap-4 pt-2 font-medium md:text-lg">
             <div className="flex items-center gap-2.5">
               <ArrowRight />
-              <Link href={visitProject} className="hover:underline">
+              <Link
+                target="_blank"
+                href={visitProject}
+                className="hover:underline"
+              >
                 Visit Project
               </Link>
             </div>
 
-            <div className="flex items-center gap-2.5">
-              <ArrowRight />
-              <Link href={sourceCode} className="hover:underline">
-                Source Code
-              </Link>
-            </div>
+            {sourceCode && (
+              <div className="flex items-center gap-2.5">
+                <ArrowRight />
+                <Link
+                  target="_blank"
+                  href={sourceCode}
+                  className="hover:underline"
+                >
+                  Source Code
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

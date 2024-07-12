@@ -23,22 +23,24 @@ const Navbar = () => {
   return (
     <Fragment>
       <header className="md:hidden"></header>
-      <header className="bg-[rgba(255, 255, 255, 0.05)] fixed bottom-5 left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-md border-2 border-dashed border-gray-200 pl-0 pr-2 shadow-md dark:shadow-2xl dark:shadow-black md:sticky md:left-auto md:top-0 md:w-full md:-translate-x-0 md:rounded-none md:border-x-0 md:border-b-2 md:border-t-0 md:px-2 md:backdrop-blur">
-        <nav className="mx-auto flex max-w-5xl items-center justify-between overflow-x-auto backdrop-blur scrollbar-thin scrollbar-thumb-gray-300 md:w-full">
+      <header className="bg-[rgba(255, 255, 255, 0.05)] fixed bottom-5 left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-md border-2 border-dashed border-gray-200 bg-blend-difference shadow-md dark:shadow-2xl dark:shadow-black md:sticky md:left-auto md:top-0 md:w-full md:-translate-x-0 md:rounded-none md:border-x-0 md:border-b-2 md:border-t-0">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between overflow-x-auto pr-2 backdrop-blur scrollbar-thin scrollbar-thumb-gray-300 md:w-full">
           <ul className="flex items-center text-center text-sm font-semibold transition">
             {navigation.map(({ route, text }, idx) => (
               <Link
                 key={idx}
                 href={route}
                 className={cn(
-                  "relative min-w-16 rounded-sm px-2 py-4 duration-200 ease-in-out hover:bg-gray-300 dark:hover:bg-white/5 md:py-5",
+                  "relative min-w-16 rounded-sm px-2 py-4 duration-200 ease-in-out hover:bg-black/5 dark:hover:bg-white/10 md:py-5",
                   {
                     "after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-black after:content-[''] after:dark:border-white md:after:top-0 md:after:border-b-0 md:after:border-t-2":
                       pathName === route,
                   },
                 )}
               >
-                {text}
+                <span className="dark:[text-shadow:_2px_2px_5px_rgb(0_0_0_/_70%)]">
+                  {text}
+                </span>
               </Link>
             ))}
           </ul>
@@ -57,7 +59,7 @@ const Navbar = () => {
             <div ref={ref} className="h-full w-full md:relative">
               <Moon
                 fill="#F59E0B"
-                className="absolute right-0 top-1/2 hidden -translate-y-1/2 stroke-none dark:block"
+                className="absolute right-2 top-1/2 hidden -translate-y-1/2 stroke-none dark:block md:right-0"
               />
 
               <Sun
