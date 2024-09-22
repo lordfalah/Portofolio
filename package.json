@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/dom-view-transitions": "^1.0.5",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.11",
     "lucide-react": "^0.395.0",

@@ -15,7 +15,7 @@ const navigation = [
   { text: "Blog", route: "/blog" },
 ];
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const pathName = usePathname();
   const { setTheme, theme } = useTheme();
   const ref = useRef<HTMLDivElement>(null);
@@ -23,8 +23,8 @@ const Navbar = () => {
   return (
     <Fragment>
       <header className="md:hidden"></header>
-      <header className="bg-[rgba(255, 255, 255, 0.05)] fixed bottom-5 left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-md border-2 border-dashed border-gray-200 bg-blend-difference shadow-md dark:shadow-2xl dark:shadow-black md:sticky md:left-auto md:top-0 md:w-full md:-translate-x-0 md:rounded-none md:border-x-0 md:border-b-2 md:border-t-0">
-        <nav className="mx-auto flex max-w-5xl items-center justify-between overflow-x-auto pr-2 backdrop-blur scrollbar-thin scrollbar-thumb-gray-300 md:w-full">
+      <header className="bg-[rgba(255, 255, 255, 0.05)] fixed bottom-5 left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-md border-2 border-dashed border-gray-200 bg-blend-difference shadow-md dark:shadow-2xl dark:shadow-black md:sticky md:left-auto md:top-0 md:w-full md:-translate-x-0 md:rounded-none md:border-x-0 md:border-b-2 md:border-t-0 backdrop-blur">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between overflow-x-auto pr-2  scrollbar-thin scrollbar-thumb-gray-300 md:w-full">
           <ul className="flex items-center text-center text-sm font-semibold transition">
             {navigation.map(({ route, text }, idx) => (
               <Link
