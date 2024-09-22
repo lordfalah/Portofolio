@@ -4,7 +4,7 @@ import { Doodle1 } from "@/components/doodles";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 
-const CharacterPeep = () => {
+const CharacterPeep: React.FC = () => {
   const { theme } = useTheme();
 
   return (

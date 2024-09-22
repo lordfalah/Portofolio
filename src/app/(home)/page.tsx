@@ -1,6 +1,8 @@
 import { Doodle1, Doodle2 } from "@/components/doodles";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Fragment } from "react";
+import FireCharacter from "@/components/FireCharacter";
 const CharacterPeep = dynamic(() => import("@/app/(home)/character"), {
   ssr: false,
 });

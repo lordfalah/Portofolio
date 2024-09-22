@@ -1,11 +1,5 @@
 import { flushSync } from "react-dom";
 
-declare global {
-  interface Document {
-    startViewTransition: (callback: () => void) => any;
-  }
-}
-
 export const handleAnimationThemeToggle = async ({
   elementDiv,
   setTheme,
