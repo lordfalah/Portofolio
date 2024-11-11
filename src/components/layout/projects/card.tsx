@@ -1,40 +1,57 @@
+"use client";
+import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
 import Badge from "@/components/badge";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useTheme } from "next-themes";
+import { TCard } from "@/types/index.type";
 
-export type TCard = {
-  title: string;
-  description: string;
-  imageSrc: string;
-  createdAt: Date | string;
-  visitProject: string;
-  sourceCode: string | null;
-  techs: { name: string; color: string }[];
-};
-
-const Card = ({
+const Card: React.FC<
+  Omit<TCard, "imageSrc"> & { children: React.ReactNode }
+> = ({
   title,
   description,
-  imageSrc,
   createdAt,
   visitProject,
   sourceCode,
   techs,
-}: TCard) => {
+  children,
+}) => {
+  const { theme } = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = ref.current?.getBoundingClientRect();
+    if (rect) {
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      setMousePosition({ x, y });
+    }
+  }
+
   return (
-    <div className="w-full overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-[#F9F9F9] dark:bg-[#0F0F0F]/50">
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ scale: 1.03 }}
+      className="relative w-full overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-[#F9F9F9] hover:cursor-pointer dark:bg-[#0F0F0F]/50"
+    >
+      <div
+        className="absolute inset-0 z-0 transition-opacity duration-300 ease-in-out"
+        style={{
+          background: `radial-gradient(circle 150px at ${mousePosition.x}px ${mousePosition.y}px, ${theme === "dark" ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)"}, transparent 80%)`,
+          opacity: isHovered ? 1 : 0,
+          pointerEvents: "none",
+        }}
+      />
+
       <div className="flex flex-col lg:flex-row">
-        <Image
-          alt="project"
-          className="basis-1/2 rounded-xl p-2 transition-transform duration-150 ease-in-out group-hover:scale-125"
-          width="489"
-          height="256"
-          src={imageSrc}
-          style={{ objectFit: "contain", objectPosition: "center" }}
-          priority
-        />
+        {children}
 
         <div className="mx-auto flex flex-col justify-center space-y-3 p-4 md:p-2 lg:basis-1/2">
           <div>
@@ -80,7 +97,7 @@ const Card = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
