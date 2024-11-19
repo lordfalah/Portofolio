@@ -1,8 +1,9 @@
-import { Doodle1, Doodle2 } from "@/components/doodles";
+import { Doodle2 } from "@/components/doodles";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
-import FireCharacter from "@/components/FireCharacter";
+import Switcher from "@/components/Switcher";
+
 const CharacterPeep = dynamic(() => import("@/app/(home)/character"), {
   ssr: false,
 });
@@ -46,7 +47,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-      {/* <Canvas /> */}
     </section>
   );
 }

@@ -1,11 +1,15 @@
+import { getImage } from "@/hooks/use-plaiceholder";
 import Image from "next/image";
 
-const Blob = () => {
+const Blob = async () => {
+  const src = "/image/me/iam.jpg";
+  const base64 = await getImage("/image/me/iam.jpg");
+
   return (
     <div className="relative -z-10 mx-auto size-80 md:size-96">
       <Image
         className="size-96"
-        src={"/image/me/iam.jpg"}
+        src={src}
         alt="avatar"
         style={{
           clipPath: "url(#shape)",
@@ -14,7 +18,8 @@ const Blob = () => {
         }}
         width={500}
         height={500}
-        priority
+        blurDataURL={base64}
+        placeholder="blur"
       />
       <svg width="0" height="0" viewBox="0 0 500 500">
         <clipPath id="shape" clipPathUnits="objectBoundingBox">

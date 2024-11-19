@@ -1,77 +1,46 @@
 import React from "react";
-import Card, { type TCard } from "@/components/layout/projects/card";
-import { generateNewColor } from "@/libs/utils";
+import Card from "@/components/layout/projects/card";
+import Image from "next/image";
+import { getImage } from "@/hooks/use-plaiceholder";
+import { projects } from "@/libs/data";
 
-const images: TCard[] = [
-  {
-    title: "Auth",
-    imageSrc: "/image/projects/auth.png",
-    description:
-      "Simple authentication that uses Oauth from google and implements password reset from resend",
-    visitProject: "https://next-auth-six-jade.vercel.app/auth/login",
-    sourceCode: "https://github.com/lordfalah/next-auth.git",
-    createdAt: "Created at May 2024",
-    techs: [
-      { name: "Next", color: generateNewColor() },
-      { name: "Auth", color: generateNewColor() },
-      { name: "Postgress", color: generateNewColor() },
-    ],
-  },
-
-  {
-    title: "Finplan",
-    imageSrc: "/image/projects/finplan.png",
-    description:
-      "A platform that provides services to help financial planning and investment. Built using vue and quasar technology",
-    visitProject: "https://finplan.id/",
-    sourceCode: null,
-    createdAt: "Created at May 2024",
-    techs: [
-      { name: "Next", color: generateNewColor() },
-      { name: "Auth", color: generateNewColor() },
-      { name: "Postgress", color: generateNewColor() },
-    ],
-  },
-
-  {
-    title: "Smartpath",
-    imageSrc: "/image/projects/smartpath.png",
-    description:
-      "An educational technology platform that provides a variety of learning programs to assist students and professionals in developing their skills. Which is built using React, Next, Typescript",
-    visitProject: "https://smartpath.id/",
-    sourceCode: null,
-    createdAt: "Created at May 2024",
-    techs: [
-      { name: "Next", color: generateNewColor() },
-      { name: "Auth", color: generateNewColor() },
-      { name: "Postgress", color: generateNewColor() },
-    ],
-  },
-];
-
-const Project = () => {
+const Project: React.FC = () => {
   return (
     <div className="my-10 space-y-6">
       <h1 className="text-4xl font-semibold md:text-6xl">Projects</h1>
 
       <div className="space-y-3.5">
         <p>Some collection of my past works</p>
-        {images.map(
-          (
+        {projects.map(
+          async (
             { description, imageSrc, title, sourceCode, visitProject, techs },
             idx,
-          ) => (
-            <Card
-              key={idx}
-              imageSrc={imageSrc}
-              title={title}
-              description={description}
-              createdAt="Created at may 2024"
-              sourceCode={sourceCode}
-              visitProject={visitProject}
-              techs={techs}
-            />
-          ),
+          ) => {
+            const base64 = await getImage(imageSrc);
+
+            return (
+              <Card
+                key={idx}
+                title={title}
+                description={description}
+                createdAt="Created at may 2024"
+                sourceCode={sourceCode}
+                visitProject={visitProject}
+                techs={techs}
+              >
+                <Image
+                  alt="project"
+                  className="basis-1/2 rounded-xl p-2 transition-transform duration-150 ease-in-out group-hover:scale-125"
+                  width="489"
+                  height="256"
+                  src={imageSrc}
+                  style={{ objectFit: "contain", objectPosition: "center" }}
+                  blurDataURL={base64}
+                  placeholder="blur"
+                />
+              </Card>
+            );
+          },
         )}
       </div>
     </div>
